@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.game-intro {
+  padding: 5% 10%;
+  float: left;
+}
+
+.game-intro p {
+  font-size: 18px;
+  font-family: 'Verdana';
+}
+.game-frame-wrap {
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #eee;
+}
+.game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body button {
+  font-size: 20px;
+  background-color: #395938;
+  color: #fff;
+  padding: 20px 20px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+#canvas {
+  /* border: 1px solid black; */
+  margin-top: 0.4rem;
+
+  /* width: 300px;
+    height: 300px; */
+  background-color: white;
+}
