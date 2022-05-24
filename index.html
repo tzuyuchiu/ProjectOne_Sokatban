@@ -6,16 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sokoban</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="game-intro">
-      <button id="start-button">Start</button>
-    </div>
-    <div class="game-frame-wrap">
-      <div id="game-board">
-        <canvas id="canvas" width="350" height="350"></canvas>
+    <section class="container">
+      <div class="game-intro">
+        <!-- <button id="start-button"></button> -->
+        <img id="start-button" src="../images/start.svg" alt="start" />
+        <img id="restart-button" src="../images/restart.svg" alt="restart" />
+        <img id="pause-button" src="../images/pause.svg" alt="pause" />
+        <img id="music-button" src="../images/music.svg" alt="music" />
       </div>
-    </div>
+      <div class="modal hidden">
+        <div class="modal-content">
+          <span class="close-button">×</span>
+
+          <p>You did it!</p>
+        </div>
+      </div>
+      <div class="game-frame-wrap">
+        <div id="game-board">
+          <div id="timer"></div>
+          <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+      </div>
+    </section>
     <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
