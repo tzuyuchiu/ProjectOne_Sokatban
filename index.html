@@ -21,7 +21,7 @@
         <img id="start-button" src="../images/start.svg" alt="start" />
         <img id="restart-button" src="../images/restart.svg" alt="restart" />
         <img id="pause-button" src="../images/pause.svg" alt="pause" />
-        <!-- <img id="music-button" src="../images/music.svg" alt="music" /> -->
+
         <img
           class="sound"
           src="../images/music.svg"
@@ -35,17 +35,47 @@
           alt="information"
         />
       </div>
+      <!-- Information pop up -->
+      <div class="modal-info hidden">
+        <button class="close-info-button">×</button>
+        <div class="modal-info-content-details">
+          <p>
+            control for playing Sokoban: Arrow keys for movement. <br />The goal
+            of the gmae is to push all of the balls onto the table mat.
+          </p>
+          <div class="modal-info-content-image">
+            <img id="start-button" src="../images/start.svg" alt="start" />
+            <p>Play</p>
+            <img
+              id="restart-button"
+              src="../images/restart.svg"
+              alt="restart"
+            />
+            <p>Restart</p>
+            <img id="music-button" src="../images/music.svg" alt="music" />
+            <p>Play/Stop sound</p>
+          </div>
+        </div>
+      </div>
+      <!-- Win pop up -->
       <div class="modal hidden">
         <div class="modal-content">
           <button class="close-button">×</button>
 
-          <p>Meow :)</p>
+          <p>Good Job!</p>
           <button id="nextlevel-button">Next Level</button>
+        </div>
+      </div>
+      <!-- Lose pop up -->
+      <div class="modal-lose hidden">
+        <div class="modal-content">
+          <!-- <button class="close-lose-button">×</button> -->
+
+          <p>Awww You Lose!!</p>
         </div>
       </div>
       <div class="game-frame-wrap">
         <div id="game-board">
-          <!-- <progress value="“0”" max="10" id="progressBar"></progress> -->
           <canvas id="canvas" width="500" height="500"></canvas>
         </div>
       </div>

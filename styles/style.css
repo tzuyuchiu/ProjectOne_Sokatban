@@ -13,10 +13,17 @@ body {
   position: relative;
   justify-content: center;
 }
+/* timer */
 h1 {
-  letter-spacing: 0px;
+  margin-left: 70rem;
+  margin-top: 5rem;
+  position: absolute;
+
   color: #f27932;
   opacity: 1;
+}
+p {
+  color: #f27932;
 }
 .game-intro {
   padding: 5% 20%;
@@ -27,7 +34,13 @@ h1 {
 .game-intro img {
   padding: 1rem;
 }
+/* adjust the position of sound button  */
 .sound {
+  margin-top: 50rem;
+  position: absolute;
+}
+#information-button {
+  margin-left: 70rem;
   margin-top: 50rem;
   position: absolute;
 }
@@ -38,6 +51,7 @@ h1 {
   flex-direction: row;
   justify-content: center;
 }
+/* pop up window for winning game */
 .modal {
   position: absolute;
   left: 53%;
@@ -46,29 +60,107 @@ h1 {
   padding: 1.6rem 4rem;
   /* border: 3px solid black; */
   border-radius: 5px;
-  background: white;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+  background: #fff1ea;
+  /* box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2); */
+  box-shadow: 2px 2px 2px 1px #f7bc99;
   z-index: 1;
 }
-.hidden {
+.modal.hidden {
   display: none;
 }
-#nextlevel-button {
-  position: relative;
-}
-.close-button {
+/* pop up window for losing game */
+.modal-lose {
   position: absolute;
-  width: 1.5rem;
-  top: 1rem;
-  left: 1rem;
-  text-align: center;
-  border-radius: 0.25rem;
-  background-color: #fffaf7;
+  left: 53%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  padding: 1.6rem 4rem;
+  /* border: 3px solid black; */
+  border-radius: 5px;
+  background: #fff1ea;
+  /* box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2); */
+  box-shadow: 2px 2px 2px 1px #f7bc99;
+  z-index: 1;
 }
-.close-button:hover {
-  background-color: darkgray;
+.modal-lose.hidden {
+  display: none;
+}
+/* pop up window for game information */
+.modal-info {
+  position: absolute;
+  left: 80%;
+  top: 130%;
+  transform: translate(-50%, -50%);
+  padding: 1.6rem 2rem;
+  /* border: 3px solid black; */
+  border-radius: 5px;
+  background: #fff1ea;
+  box-shadow: 2px 2px 2px 1px #f7bc99;
+  z-index: 1;
+}
+.modal-info.hidden {
+  display: none;
+}
+.modal-info-content-details {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+.modal-info-content-image img {
+  width: 3rem;
+}
+.modal-info-content-image p {
+  margin-left: 5rem;
+  margin-bottom: 2rem;
+}
+
+/* next level button inside the winning pop up  */
+#nextlevel-button {
+  position: relative;
+  color: #f27932;
+  background-color: #fff1ea;
+  box-shadow: 2px 2px 2px 1px #f7bc99;
+  z-index: 1;
+  border-radius: 2px;
+  border: none;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* close button inside the winning pop up  */
+.close-button {
+  position: absolute;
+  /* width: 1.5rem; */
+  top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  right: 1rem;
+  text-align: center;
+  background-color: #fff1ea;
+  color: #f7bc99;
+  border: none;
+  outline: none;
+}
+.close-button:hover {
+  background-color: white;
+}
+/* close button inside the information pop up  */
+.close-info-button {
+  position: absolute;
+  /* width: 1.5rem; */
+  top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  right: 1rem;
+  text-align: center;
+  background-color: #fff1ea;
+  color: #f7bc99;
+  border: none;
+  outline: none;
+}
+/* style my game canvas */
 #canvas {
   top: 18rem;
   right: 40rem;

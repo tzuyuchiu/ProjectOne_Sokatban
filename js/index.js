@@ -6,6 +6,7 @@ document.getElementById('start-button').addEventListener('click', () => {
 //canvas setup
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+let timeCountDown = null;
 
 //Level 1 map array set up 1 =>boundry 2=>box 3=> target 4=> player
 const map = [
@@ -42,21 +43,11 @@ function startGame() {
   // function to draw game pieces on the map
   drawMap();
   timeCount();
-  //   let timeleft = 20;
-  //   let downloadTimer = setInterval(function () {
-  //     if (timeleft <= 0) {
-  //       clearInterval(downloadTimer);
-  //       //   alert('Mono is mad!');
-  //     }
-  //     document.getElementById('progressBar').value = 10 - timeleft;
-  //     timeleft -= 1;
-  //   }, 1000);
-  // function to re-draw game pieces on the map once player moves
-  //   reDrawMap();
+  // function to play the sound
   play();
 }
 class Boundry {
-  //object literal??
+  //object literal
   constructor({ position }) {
     this.position = position;
     this.width = 50;
@@ -66,14 +57,6 @@ class Boundry {
   }
   //draw boundries (woodlogs) on canvas
   draw() {
-    // ctx.fillStyle = 'grey';
-    // ctx.fillRect(
-    //   this.position.x * 50,
-    //   this.position.y * 50,
-    //   this.width,
-    //   this.height
-    // );
-
     ctx.drawImage(
       this.woodLogImage,
       this.position.x * 70,
@@ -94,7 +77,7 @@ const isGamePieceAt = (gamePiece, newX, newY) => {
 
 //create a player & the movements
 class Player {
-  //object literal??
+  //object literal
   constructor({ position, speed }) {
     this.position = position;
     this.speed = speed;
@@ -112,7 +95,7 @@ class Player {
   }
 
   canMoveRight() {
-    // check boundries doesn't have a boundry which is at the new position
+    // check if there is a boundry which is at the new position
 
     const newX = player.position.x + 1;
     const newY = player.position.y;
@@ -131,24 +114,19 @@ class Player {
       collidingBox.moveRight();
       return collidingBox.canBoxMove();
     }
-
+    //if there is no walls & boxes
     return true;
   }
 
   moveRight() {
     if (!this.canMoveRight()) {
       return;
-
-      // } else if (this.isBoxRight()) {
-      //   this.position.x += this.speed.x;
-      // }
     } else {
       this.position.x += this.speed.x;
     }
   }
   canMoveLeft() {
-    // check boundries doesn't have a boundry which is at the new position
-    //(1,2)
+    // check if there is a boundry which is at the new position
     const newX = player.position.x - 1;
     const newY = player.position.y;
     let collide = boundries.some((boundry) =>
@@ -172,16 +150,12 @@ class Player {
   moveLeft() {
     if (!this.canMoveLeft()) {
       return;
-
-      // } else if (this.isBoxLeft()) {
-      //   this.position.x -= this.speed.x;
     } else {
       this.position.x -= this.speed.x;
     }
   }
   canMoveUp() {
-    // check boundries doesn't have a boundry which is at the new position
-    //(0,3)
+    // check if there is a boundry which is at the new position
     const newX = player.position.x;
     const newY = player.position.y - 1;
     let collide = boundries.some((boundry) =>
@@ -205,16 +179,12 @@ class Player {
   moveUp() {
     if (!this.canMoveUp()) {
       return;
-
-      // } else if (this.isBoxUp()) {
-      //   this.position.y -= this.speed.y;
     } else {
       this.position.y -= this.speed.y;
     }
   }
   canMoveDown() {
-    // check boundries doesn't have a boundry which is at the new position
-    //(2,3)
+    // check if there is a boundry which is at the new position
     const newX = player.position.x;
     const newY = player.position.y + 1;
 
@@ -262,13 +232,13 @@ class Player {
 }
 
 class Boxes {
-  //object literal??
+  //object literal
   constructor({ position, speed }) {
     this.position = position;
     this.speed = speed;
     this.ballImage = new Image();
     this.ballImage.src = 'images/laine.png';
-    this.count = 0;
+    this.isOnTarget = false;
   }
   draw() {
     ctx.drawImage(
@@ -280,21 +250,9 @@ class Boxes {
     );
   }
 
-  toggleModal() {
-    const modal = document.querySelector('.modal');
-    const close = document.querySelector('.close-button');
-    modal.classList.toggle('hidden');
-  }
-  closeModal() {
-    console.log('trying to close modal');
-    const close = document.querySelector('.close-button');
-    close.addEventListener('click', () => {
-      this.toggleModal();
-    });
-  }
   //function to check if the box is collided with boundry
   canBoxMove(newX, newY) {
-    // check boundries doesn't have a boundry which is at the new position
+    // check if there is a boundry which is at the new position
 
     let collide = false;
     // check whether any boundry position matches newX, newY
@@ -308,14 +266,14 @@ class Boxes {
   }
   //function to check if the box is on the target
   isBoxOnTarget() {
-    // check boundries doesn't have a boundry which is at the new position
-
     const newX = this.position.x;
     const newY = this.position.y;
     let win = false;
-    // check whether any boundry position matches newX, newY
+
     targets.forEach((target) => {
       if (target.position.x === newX && target.position.y === newY) {
+        // this.count++;
+        this.isOnTarget = true;
         win = true;
       }
     });
@@ -331,12 +289,12 @@ class Boxes {
     } else {
       this.position.x = newX;
     }
-    if (this.isBoxOnTarget()) {
-      this.count += 1;
-      console.log('You Win', this.count);
-      this.toggleModal();
-      this.closeModal();
-    }
+    // if (this.isBoxOnTarget()) {
+    //   console.log('You Win', this.count);
+    //   toggleModal();
+    //   closeModal();
+    // }
+    this.isAllBoxOnTarget();
   }
 
   moveLeft() {
@@ -347,12 +305,12 @@ class Boxes {
     } else {
       this.position.x = newX;
     }
-    if (this.isBoxOnTarget()) {
-      this.count += 1;
-      console.log('You Win', this.count);
-      this.toggleModal();
-      this.closeModal();
-    }
+    // if (this.isBoxOnTarget()) {
+    //   console.log('You Win', this.count);
+    //   toggleModal();
+    //   closeModal();
+    // }
+    this.isAllBoxOnTarget();
   }
 
   moveUp() {
@@ -363,12 +321,12 @@ class Boxes {
     } else {
       this.position.y = newY;
     }
-    if (this.isBoxOnTarget()) {
-      this.count += 1;
-      console.log('You Win', this.count);
-      this.toggleModal();
-      this.closeModal();
-    }
+    // if (this.isBoxOnTarget()) {
+    //   console.log('You Win', this.count);
+    //   toggleModal();
+    //   closeModal();
+    // }
+    this.isAllBoxOnTarget();
   }
 
   moveDown() {
@@ -379,23 +337,24 @@ class Boxes {
     } else {
       this.position.y = newY;
     }
-    if (this.isBoxOnTarget()) {
-      this.count += 1;
-      console.log('You Win', this.count);
-      this.toggleModal();
-      this.closeModal();
-    }
+    this.isAllBoxOnTarget();
   }
-  //if box is on target than count plus 1, if the count equal to the total number of boxes on the map, then win
-  win() {
-    if (this.count == boxes.length) {
-      console.log('count', boxes.length);
+
+  isAllBoxOnTarget() {
+    // console.log(count);
+    this.isBoxOnTarget();
+    const win = boxes.every((box) => box.isOnTarget);
+    if (win) {
+      toggleModal();
+      closeModal();
+      clearInterval(timeCountDown);
+      console.log('Win');
     }
   }
 }
 
 class Target {
-  //object literal??
+  //object literal
   constructor({ position }) {
     this.radius = 20;
     this.position = position;
@@ -495,28 +454,33 @@ function drawMap() {
     player.draw();
   });
 }
+
+function removeEventListner() {
+  document.removeEventListener('keydown', addListner, true);
+}
 // function to re-draw game pieces on the map once player moves
 function reDrawMap() {
-  const startTime = new Date(Date.now());
-  document.addEventListener('keydown', (event) => {
-    console.log('I am an event listener started at ' + startTime);
-    console.log('code', event.code);
+  //   const startTime = new Date(Date.now());
+  document.addEventListener('keydown', addListner, true);
+}
+function addListner(event) {
+  // console.log('I am an event listener started at ' + startTime);
+  console.log('code', event);
 
-    player.move(event.code);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  player.move(event.code);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    player.draw();
-    targets.forEach((target) => {
-      target.draw();
-    });
+  player.draw();
+  targets.forEach((target) => {
+    target.draw();
+  });
 
-    boxes.forEach((box) => {
-      box.draw();
-    });
+  boxes.forEach((box) => {
+    box.draw();
+  });
 
-    boundries.forEach((boundry) => {
-      boundry.draw();
-    });
+  boundries.forEach((boundry) => {
+    boundry.draw();
   });
 }
 reDrawMap();
@@ -525,32 +489,26 @@ reDrawMap();
 function restart() {
   console.log('function', ctx.clearRect);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  toggleModal();
   startGame();
 }
-//   function changeTime() {
-//     document.getElementById('timer').innerHTML = ++value;
-//   }
-//   let timerInterval = null;
-//   function startTime() {
-//     stop();
-//     value = 0;
-//     timerInterval = setInterval(changeTime, 20000);
-//   }
 
 //AddEventListener for restart button
 document.getElementById('restart-button').addEventListener('click', () => {
   restart();
 });
-
+//function to go to the next level
 function goNextLevel() {
-  console.log('function', ctx.clearRect);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  toggleModal();
+  clearInterval(timeCountDown);
   createMap(mapLevel2);
   drawMap();
+  timeCount();
 }
 document.getElementById('nextlevel-button').addEventListener('click', () => {
   goNextLevel();
+
   play();
 });
 
@@ -569,6 +527,7 @@ document.getElementById('nextlevel-button').addEventListener('click', () => {
 //   playGameSound();
 // });
 
+//function to play or stop the sound
 const audio = document.getElementById('audio');
 let sound = false;
 
@@ -581,15 +540,18 @@ function play() {
     sound = false;
   }
 }
+//function for the countdown timer
 const timerGame = document.querySelector('h1');
 function timeCount() {
-  let timeSecond = 15;
+  let timeSecond = 10;
   timerGame.innerHTML = `00:${timeSecond}`;
-  const timeCountDown = setInterval(() => {
+  timeCountDown = setInterval(() => {
+    console.log('gygtgtgtg');
     timeSecond--;
     displayTimeTwoDigit(timeSecond);
     if (timeSecond <= 0 || timeSecond < 1) {
       clearInterval(timeCountDown);
+      toggleloseModal();
     }
   }, 1000);
 }
@@ -600,3 +562,33 @@ function displayTimeTwoDigit(second) {
     sec < 10 ? '0' : ''
   }${sec}`;
 }
+
+function toggleModal() {
+  const modal = document.querySelector('.modal');
+
+  modal.classList.toggle('hidden');
+}
+function toggleloseModal() {
+  const modalLose = document.querySelector('.modal-lose');
+
+  modalLose.classList.toggle('hidden');
+}
+
+function closeModal() {
+  const close = document.querySelector('.close-button');
+  close.addEventListener('click', () => {
+    toggleModal();
+  });
+}
+function closeloseModal() {
+  const closeLose = document.querySelector('.close-lose-button');
+  closeLose.addEventListener('click', () => {
+    toggleloseModal();
+  });
+}
+//Pop up for information button
+const modalInfo = document.querySelector('.modal-info');
+const information = document.querySelector('#information-button');
+information.addEventListener('click', () => {
+  modalInfo.classList.toggle('hidden');
+});
