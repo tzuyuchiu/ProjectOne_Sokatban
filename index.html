@@ -14,10 +14,13 @@
     />
   </head>
   <body>
-    <section class="container">
+    <section class="containerFirstPage hidden">
+      <img id="cat" src="images/cat.png" alt="cat" />
+    </section>
+
+    <section class="containerGame hidden">
       <h1>00:00</h1>
       <div class="game-intro">
-        <!-- <button id="start-button"></button> -->
         <img id="start-button" src="../images/start.svg" alt="start" />
         <img id="restart-button" src="../images/restart.svg" alt="restart" />
         <img id="pause-button" src="../images/pause.svg" alt="pause" />
@@ -37,7 +40,7 @@
       </div>
       <!-- Information pop up -->
       <div class="modal-info hidden">
-        <button class="close-info-button">×</button>
+        <!-- <button class="close-info-button">×</button> -->
         <div class="modal-info-content-details">
           <p>
             control for playing Sokoban: Arrow keys for movement. <br />The goal
@@ -69,8 +72,6 @@
       <!-- Lose pop up -->
       <div class="modal-lose hidden">
         <div class="modal-content">
-          <!-- <button class="close-lose-button">×</button> -->
-
           <p>Awww You Lose!!</p>
         </div>
       </div>

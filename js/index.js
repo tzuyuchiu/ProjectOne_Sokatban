@@ -27,6 +27,7 @@ const mapLevel2 = [
   [1, 0, 0, 3, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1],
 ];
+
 let player = null;
 // initial an boundries(walls) array
 const boundries = [];
@@ -34,11 +35,10 @@ const boundries = [];
 const boxes = [];
 // initial an targets array
 const targets = [];
-// initial an player array
-// const player = [];
 
 function startGame() {
   // function to create map
+
   createMap(map);
   // function to draw game pieces on the map
   drawMap();
@@ -289,11 +289,7 @@ class Boxes {
     } else {
       this.position.x = newX;
     }
-    // if (this.isBoxOnTarget()) {
-    //   console.log('You Win', this.count);
-    //   toggleModal();
-    //   closeModal();
-    // }
+
     this.isAllBoxOnTarget();
   }
 
@@ -305,11 +301,7 @@ class Boxes {
     } else {
       this.position.x = newX;
     }
-    // if (this.isBoxOnTarget()) {
-    //   console.log('You Win', this.count);
-    //   toggleModal();
-    //   closeModal();
-    // }
+
     this.isAllBoxOnTarget();
   }
 
@@ -321,11 +313,7 @@ class Boxes {
     } else {
       this.position.y = newY;
     }
-    // if (this.isBoxOnTarget()) {
-    //   console.log('You Win', this.count);
-    //   toggleModal();
-    //   closeModal();
-    // }
+
     this.isAllBoxOnTarget();
   }
 
@@ -341,14 +329,16 @@ class Boxes {
   }
 
   isAllBoxOnTarget() {
-    // console.log(count);
     this.isBoxOnTarget();
+    //check win condition: if all the boxes in the map is on the targets
     const win = boxes.every((box) => box.isOnTarget);
+    // if ture, pop up windows & stop the timer
     if (win) {
       toggleModal();
+
       closeModal();
       clearInterval(timeCountDown);
-      console.log('Win');
+      removeEventListner();
     }
   }
 }
@@ -460,11 +450,9 @@ function removeEventListner() {
 }
 // function to re-draw game pieces on the map once player moves
 function reDrawMap() {
-  //   const startTime = new Date(Date.now());
   document.addEventListener('keydown', addListner, true);
 }
 function addListner(event) {
-  // console.log('I am an event listener started at ' + startTime);
   console.log('code', event);
 
   player.move(event.code);
@@ -489,13 +477,16 @@ reDrawMap();
 function restart() {
   console.log('function', ctx.clearRect);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  toggleModal();
+
+  clearInterval(timeCountDown);
   startGame();
+  //   toggleModal();
 }
 
 //AddEventListener for restart button
 document.getElementById('restart-button').addEventListener('click', () => {
   restart();
+  toggleloseModal();
 });
 //function to go to the next level
 function goNextLevel() {
@@ -507,8 +498,10 @@ function goNextLevel() {
   timeCount();
 }
 document.getElementById('nextlevel-button').addEventListener('click', () => {
-  goNextLevel();
+  //   toggleloseModal();
 
+  reDrawMap();
+  goNextLevel();
   play();
 });
 
@@ -541,12 +534,12 @@ function play() {
   }
 }
 //function for the countdown timer
+
 const timerGame = document.querySelector('h1');
 function timeCount() {
   let timeSecond = 10;
   timerGame.innerHTML = `00:${timeSecond}`;
   timeCountDown = setInterval(() => {
-    console.log('gygtgtgtg');
     timeSecond--;
     displayTimeTwoDigit(timeSecond);
     if (timeSecond <= 0 || timeSecond < 1) {
@@ -565,7 +558,7 @@ function displayTimeTwoDigit(second) {
 
 function toggleModal() {
   const modal = document.querySelector('.modal');
-
+  //   const myCanvas = document.querySelector('#canvas');
   modal.classList.toggle('hidden');
 }
 function toggleloseModal() {
@@ -591,4 +584,12 @@ const modalInfo = document.querySelector('.modal-info');
 const information = document.querySelector('#information-button');
 information.addEventListener('click', () => {
   modalInfo.classList.toggle('hidden');
+});
+//change between first page to game
+const myFirstPage = document.querySelector('.containerFirstPage');
+const myGamePage = document.querySelector('.containerGame');
+const myCat = document.querySelector('#cat');
+myCat.addEventListener('click', () => {
+  myFirstPage.classList.toggle('hidden');
+  myGamePage.classList.toggle('hidden');
 });

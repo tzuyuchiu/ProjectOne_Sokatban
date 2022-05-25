@@ -7,12 +7,30 @@ body {
   background-color: #fffaf7;
   font-family: 'Poppins', sans-serif;
 }
-.container {
+
+.containerFirstPage {
+  visibility: hidden;
+}
+.containerFirstPage.hidden {
+  visibility: visible;
+}
+#cat {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 100px;
+}
+.containerGame {
+  visibility: visible;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
 }
+.containerGame.hidden {
+  visibility: hidden;
+}
+
 /* timer */
 h1 {
   margin-left: 70rem;
@@ -58,10 +76,10 @@ p {
   top: 30%;
   transform: translate(-50%, -50%);
   padding: 1.6rem 4rem;
-  /* border: 3px solid black; */
+
   border-radius: 5px;
   background: #fff1ea;
-  /* box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2); */
+
   box-shadow: 2px 2px 2px 1px #f7bc99;
   z-index: 1;
 }
@@ -75,10 +93,10 @@ p {
   top: 30%;
   transform: translate(-50%, -50%);
   padding: 1.6rem 4rem;
-  /* border: 3px solid black; */
+
   border-radius: 5px;
   background: #fff1ea;
-  /* box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2); */
+
   box-shadow: 2px 2px 2px 1px #f7bc99;
   z-index: 1;
 }
@@ -92,7 +110,7 @@ p {
   top: 130%;
   transform: translate(-50%, -50%);
   padding: 1.6rem 2rem;
-  /* border: 3px solid black; */
+
   border-radius: 5px;
   background: #fff1ea;
   box-shadow: 2px 2px 2px 1px #f7bc99;
@@ -109,6 +127,7 @@ p {
 }
 
 .modal-info-content-image img {
+  margin-top: 2rem;
   width: 3rem;
 }
 .modal-info-content-image p {
@@ -149,7 +168,7 @@ p {
 /* close button inside the information pop up  */
 .close-info-button {
   position: absolute;
-  /* width: 1.5rem; */
+
   top: 1rem;
   font-size: 1.2rem;
   font-weight: 700;
@@ -166,7 +185,6 @@ p {
   right: 40rem;
   background-color: #fffaf7;
   position: absolute;
-  /* border-radius: 10px; */
 
   background-image: url('../images/grass.png');
 }
