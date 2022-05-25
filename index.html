@@ -15,27 +15,42 @@
   </head>
   <body>
     <section class="container">
+      <h1>00:00</h1>
       <div class="game-intro">
         <!-- <button id="start-button"></button> -->
         <img id="start-button" src="../images/start.svg" alt="start" />
         <img id="restart-button" src="../images/restart.svg" alt="restart" />
         <img id="pause-button" src="../images/pause.svg" alt="pause" />
-        <img id="music-button" src="../images/music.svg" alt="music" />
+        <!-- <img id="music-button" src="../images/music.svg" alt="music" /> -->
+        <img
+          class="sound"
+          src="../images/music.svg"
+          value="PLAY"
+          onclick="play()"
+        />
+        <audio autoplay id="audio" src="./sound/gamesound.mp3"></audio>
+        <img
+          id="information-button"
+          src="../images/information.svg"
+          alt="information"
+        />
       </div>
       <div class="modal hidden">
         <div class="modal-content">
-          <span class="close-button">×</span>
+          <button class="close-button">×</button>
 
-          <p>You did it!</p>
+          <p>Meow :)</p>
+          <button id="nextlevel-button">Next Level</button>
         </div>
       </div>
       <div class="game-frame-wrap">
         <div id="game-board">
-          <div id="timer"></div>
+          <!-- <progress value="“0”" max="10" id="progressBar"></progress> -->
           <canvas id="canvas" width="500" height="500"></canvas>
         </div>
       </div>
     </section>
+
     <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
