@@ -82,15 +82,15 @@ class Player {
     this.position = position;
     this.speed = speed;
     this.monoImage = new Image();
-    this.monoImage.src = 'images/cat.png';
+    this.monoImage.src = 'images/cat.svg';
   }
   draw() {
     ctx.drawImage(
       this.monoImage,
       this.position.x * 70,
       this.position.y * 70,
-      this.monoImage.width,
-      this.monoImage.height
+      this.monoImage.width / 2.2,
+      this.monoImage.height / 2.2
     );
   }
 
@@ -486,11 +486,13 @@ function restart() {
 //AddEventListener for restart button
 document.getElementById('restart-button').addEventListener('click', () => {
   restart();
+  play();
   toggleloseModal();
 });
 //function to go to the next level
 function goNextLevel() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   toggleModal();
   clearInterval(timeCountDown);
   createMap(mapLevel2);
@@ -499,12 +501,24 @@ function goNextLevel() {
 }
 document.getElementById('nextlevel-button').addEventListener('click', () => {
   //   toggleloseModal();
-
-  reDrawMap();
-  goNextLevel();
   play();
-});
+  reDrawMap();
 
+  goNextLevel();
+});
+document.getElementById('pause-button').addEventListener('click', () => {
+  pause();
+});
+let timeCountdown = true;
+function pause() {
+  if (timeCountdown === true) {
+    clearInterval(timeCountDown);
+    timeCountdown = false;
+  } else {
+    timeCount();
+    timeCountdown = true;
+  }
+}
 // function playGameSound() {
 //   const audio = new Audio('../sound/gamesound.mp3');
 //   let sound = false;
@@ -523,7 +537,6 @@ document.getElementById('nextlevel-button').addEventListener('click', () => {
 //function to play or stop the sound
 const audio = document.getElementById('audio');
 let sound = false;
-
 function play() {
   if (sound === false) {
     audio.play();
@@ -537,7 +550,7 @@ function play() {
 
 const timerGame = document.querySelector('h1');
 function timeCount() {
-  let timeSecond = 10;
+  let timeSecond = 20;
   timerGame.innerHTML = `00:${timeSecond}`;
   timeCountDown = setInterval(() => {
     timeSecond--;

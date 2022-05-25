@@ -14,11 +14,46 @@ body {
 .containerFirstPage.hidden {
   visibility: visible;
 }
+h2 {
+  color: #f7bc99;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  font-size: 4rem;
+}
+h3 {
+  color: #f27932;
+  position: absolute;
+  top: 66%;
+  left: 45%;
+  font-size: 1.5rem;
+}
+#arrow {
+  top: 57%;
+  left: 43%;
+  position: absolute;
+}
 #cat {
   position: absolute;
   top: 40%;
-  left: 50%;
-  width: 100px;
+  left: 45%;
+  width: 150px;
+  animation: float 2s ease-in-out infinite;
+}
+/* first page, cat animation */
+@keyframes float {
+  0% {
+    filter: drop-shadow(5px 15px 5px #f7bc99);
+    transform: translateY(0px);
+  }
+  50% {
+    filter: drop-shadow(25px 30px 15px #f7bc99);
+    transform: translateY(-10px);
+  }
+  100% {
+    filter: drop-shadow(5px 15px 5px #fff0e6);
+    transform: translateY(0px);
+  }
 }
 .containerGame {
   visibility: visible;
@@ -33,10 +68,9 @@ body {
 
 /* timer */
 h1 {
-  margin-left: 70rem;
+  margin-left: 95rem;
   margin-top: 5rem;
   position: absolute;
-
   color: #f27932;
   opacity: 1;
 }
@@ -44,7 +78,8 @@ p {
   color: #f27932;
 }
 .game-intro {
-  padding: 5% 20%;
+  /*padding: 5% 20%;*/
+  padding: 5rem;
   float: left;
   display: flex;
   flex-direction: column;
@@ -54,12 +89,12 @@ p {
 }
 /* adjust the position of sound button  */
 .sound {
-  margin-top: 50rem;
+  margin-top: 52rem;
   position: absolute;
 }
 #information-button {
-  margin-left: 70rem;
-  margin-top: 50rem;
+  margin-left: 98rem;
+  margin-top: 52rem;
   position: absolute;
 }
 
@@ -72,16 +107,15 @@ p {
 /* pop up window for winning game */
 .modal {
   position: absolute;
-  left: 53%;
-  top: 30%;
+  left: 51.5%;
+  top: 35%;
   transform: translate(-50%, -50%);
   padding: 1.6rem 4rem;
-
   border-radius: 5px;
   background: #fff1ea;
-
-  box-shadow: 2px 2px 2px 1px #f7bc99;
+  box-shadow: 5px 5px 5px 3px #f7bc99;
   z-index: 1;
+  height: 130px;
 }
 .modal.hidden {
   display: none;
@@ -89,15 +123,13 @@ p {
 /* pop up window for losing game */
 .modal-lose {
   position: absolute;
-  left: 53%;
-  top: 30%;
+  left: 51.5%;
+  top: 35%;
   transform: translate(-50%, -50%);
   padding: 1.6rem 4rem;
-
   border-radius: 5px;
   background: #fff1ea;
-
-  box-shadow: 2px 2px 2px 1px #f7bc99;
+  box-shadow: 5px 5px 5px 3px #f7bc99;
   z-index: 1;
 }
 .modal-lose.hidden {
@@ -106,33 +138,82 @@ p {
 /* pop up window for game information */
 .modal-info {
   position: absolute;
-  left: 80%;
-  top: 130%;
+  left: 84.5%;
+  top: 160%;
   transform: translate(-50%, -50%);
-  padding: 1.6rem 2rem;
+  padding: 3.125rem 2rem;
+  width: 338px;
+  height: 510px;
 
   border-radius: 5px;
   background: #fff1ea;
-  box-shadow: 2px 2px 2px 1px #f7bc99;
+  box-shadow: 5px 5px 5px 3px #f7bc99;
   z-index: 1;
 }
 .modal-info.hidden {
   display: none;
 }
 .modal-info-content-details {
-  background: white;
+  /* background: white;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-weight: 400;
+  color: #f27932;
+}
+
+.modal-info-content-image {
+  background: #fff;
+  border-radius: 10px;
+  width: 275 px;
+  height: 233px;
+  margin-top: 30px;
+  padding: 1.563rem 1.25rem;
+  line-height: 30px !important;
+}
+
+.line-1 {
+  display: flex;
+  align-items: center;
+}
+
+.line-2 {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.line-3 {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.line-1 p {
+  margin-left: 15px;
+}
+
+.line-2 p {
+  margin-left: 15px;
+}
+
+.line-3 p {
+  margin-left: 15px;
 }
 
 .modal-info-content-image img {
-  margin-top: 2rem;
+  /*margin-top: 2rem;*/
   width: 3rem;
 }
-.modal-info-content-image p {
+/*.modal-info-content-image p {
   margin-left: 5rem;
   margin-bottom: 2rem;
+}*/
+
+.instruction-title {
+  font-weight: 500;
+  color: #f27932;
+  font-size: 1.125rem;
 }
 
 /* next level button inside the winning pop up  */
@@ -140,12 +221,12 @@ p {
   position: relative;
   color: #f27932;
   background-color: #fff1ea;
-  box-shadow: 2px 2px 2px 1px #f7bc99;
+  box-shadow: 3px 3px 3px 2px #f7bc99;
   z-index: 1;
   border-radius: 2px;
   border: none;
   padding: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 /* close button inside the winning pop up  */

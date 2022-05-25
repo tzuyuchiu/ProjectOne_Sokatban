@@ -9,13 +9,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <section class="containerFirstPage hidden">
-      <img id="cat" src="images/cat.png" alt="cat" />
+      <img id="cat" src="images/cat.svg" alt="cat" />
+      <img id="arrow" src="images/arrow.svg" alt="arrow" />
+      <!-- <img id="background" src="images/test-background-01.png" alt="background" /> -->
+
+      <h2>Let's play Sokatban!</h2>
+      <h3>Click me!</h3>
     </section>
 
     <section class="containerGame hidden">
@@ -43,21 +48,29 @@
         <!-- <button class="close-info-button">×</button> -->
         <div class="modal-info-content-details">
           <p>
-            control for playing Sokoban: Arrow keys for movement. <br />The goal
-            of the gmae is to push all of the balls onto the table mat.
+            <div class="instruction-title">Instruction for Sokatban:</div> <br />  
+            Arrow keys for movement. <br />The goal
+            of the game is to push all of the balls on top of the picnic mat in 20 seconds. <br />
+      
           </p>
           <div class="modal-info-content-image">
-            <img id="start-button" src="../images/start.svg" alt="start" />
+           <div class="line-1">
+             <img src="../images/start.svg" alt="start" />
             <p>Play</p>
-            <img
-              id="restart-button"
-              src="../images/restart.svg"
-              alt="restart"
-            />
-            <p>Restart</p>
-            <img id="music-button" src="../images/music.svg" alt="music" />
-            <p>Play/Stop sound</p>
           </div>
+            
+           <div class="line-2">
+            <img src="../images/restart.svg"
+            alt="restart"/>
+          <p>Restart</p>
+           </div> 
+           <div class="line-3">
+            <img src="../images/music.svg" alt="music" />
+            <p>Play/Stop sound</p>
+           </div>
+            
+          </div>
+          
         </div>
       </div>
       <!-- Win pop up -->
@@ -65,14 +78,14 @@
         <div class="modal-content">
           <button class="close-button">×</button>
 
-          <p>Good Job!</p>
+          <p>Good job!</p>
           <button id="nextlevel-button">Next Level</button>
         </div>
       </div>
       <!-- Lose pop up -->
       <div class="modal-lose hidden">
         <div class="modal-content">
-          <p>Awww You Lose!!</p>
+          <p>Awww You lose!!</p>
         </div>
       </div>
       <div class="game-frame-wrap">
@@ -84,4 +97,5 @@
 
     <script type="text/javascript" src="js/index.js"></script>
   </body>
+
 </html>
