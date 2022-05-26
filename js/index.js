@@ -55,7 +55,7 @@ class Boundry {
     this.width = 50;
     this.height = 50;
     this.woodLogImage = new Image();
-    this.woodLogImage.src = 'images/log.png';
+    this.woodLogImage.src = './images/log.png';
   }
   //draw boundries (woodlogs) on canvas
   draw() {
@@ -84,7 +84,7 @@ class Player {
     this.position = position;
     this.speed = speed;
     this.monoImage = new Image();
-    this.monoImage.src = 'images/cat.svg';
+    this.monoImage.src = './images/cat.svg';
   }
   draw() {
     ctx.drawImage(
@@ -239,7 +239,7 @@ class Boxes {
     this.position = position;
     this.speed = speed;
     this.ballImage = new Image();
-    this.ballImage.src = 'images/laine.png';
+    this.ballImage.src = './images/laine.png';
     this.isOnTarget = false;
   }
   draw() {
@@ -351,7 +351,7 @@ class Target {
     this.radius = 20;
     this.position = position;
     this.targetImage = new Image();
-    this.targetImage.src = '../images/target.png';
+    this.targetImage.src = './images/target.png';
   }
   draw() {
     ctx.beginPath();
