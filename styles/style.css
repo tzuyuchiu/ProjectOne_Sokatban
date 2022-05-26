@@ -8,11 +8,11 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-.containerFirstPage {
-  visibility: hidden;
-}
-.containerFirstPage.hidden {
-  visibility: visible;
+#background {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 h2 {
   color: #f7bc99;
@@ -24,12 +24,12 @@ h2 {
 h3 {
   color: #f27932;
   position: absolute;
-  top: 66%;
-  left: 45%;
+  top: 63%;
+  left: 45.5%;
   font-size: 1.5rem;
 }
 #arrow {
-  top: 57%;
+  top: 55%;
   left: 43%;
   position: absolute;
 }
@@ -56,14 +56,10 @@ h3 {
   }
 }
 .containerGame {
-  visibility: visible;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
-}
-.containerGame.hidden {
-  visibility: hidden;
 }
 
 /* timer */
@@ -268,4 +264,7 @@ p {
   position: absolute;
 
   background-image: url('../images/grass.png');
+}
+.hidden {
+  display: none;
 }

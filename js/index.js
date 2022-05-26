@@ -477,7 +477,7 @@ reDrawMap();
 function restart() {
   console.log('function', ctx.clearRect);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  reDrawMap();
   clearInterval(timeCountDown);
   startGame();
   //   toggleModal();
@@ -487,12 +487,11 @@ function restart() {
 document.getElementById('restart-button').addEventListener('click', () => {
   restart();
   play();
-  toggleloseModal();
+  closeloseModal();
 });
-//function to go to the next level
+//function go to the next level
 function goNextLevel() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
   toggleModal();
   clearInterval(timeCountDown);
   createMap(mapLevel2);
@@ -571,13 +570,17 @@ function displayTimeTwoDigit(second) {
 
 function toggleModal() {
   const modal = document.querySelector('.modal');
-  //   const myCanvas = document.querySelector('#canvas');
   modal.classList.toggle('hidden');
 }
 function toggleloseModal() {
   const modalLose = document.querySelector('.modal-lose');
 
   modalLose.classList.toggle('hidden');
+}
+function closeloseModal() {
+  const modalLose = document.querySelector('.modal-lose');
+
+  modalLose.classList.add('hidden');
 }
 
 function closeModal() {
@@ -586,12 +589,12 @@ function closeModal() {
     toggleModal();
   });
 }
-function closeloseModal() {
-  const closeLose = document.querySelector('.close-lose-button');
-  closeLose.addEventListener('click', () => {
-    toggleloseModal();
-  });
-}
+// function closeloseModal() {
+//   const closeLose = document.querySelector('.close-lose-button');
+//   closeLose.addEventListener('click', () => {
+//     toggleloseModal();
+//   });
+// }
 //Pop up for information button
 const modalInfo = document.querySelector('.modal-info');
 const information = document.querySelector('#information-button');
