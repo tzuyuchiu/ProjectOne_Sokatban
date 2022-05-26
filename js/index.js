@@ -604,7 +604,7 @@ const myFirstPage = document.querySelector('.containerFirstPage');
 const myGamePage = document.querySelector('.containerGame');
 const myCat = document.querySelector('#cat');
 myCat.addEventListener('click', () => {
-  didIClickOnCat = true;
+  //   didIClickOnCat = true;
   startingMusic.pause();
   myFirstPage.classList.toggle('hidden');
   myGamePage.classList.toggle('hidden');
