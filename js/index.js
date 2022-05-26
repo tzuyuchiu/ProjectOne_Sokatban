@@ -7,6 +7,8 @@ document.getElementById('start-button').addEventListener('click', () => {
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let timeCountDown = null;
+let timeSecond = 0;
+let didIClickOnCat = false;
 
 //Level 1 map array set up 1 =>boundry 2=>box 3=> target 4=> player
 const map = [
@@ -42,7 +44,7 @@ function startGame() {
   createMap(map);
   // function to draw game pieces on the map
   drawMap();
-  timeCount();
+  timeCount(20);
   // function to play the sound
   play();
 }
@@ -496,7 +498,7 @@ function goNextLevel() {
   clearInterval(timeCountDown);
   createMap(mapLevel2);
   drawMap();
-  timeCount();
+  timeCount(20);
 }
 document.getElementById('nextlevel-button').addEventListener('click', () => {
   //   toggleloseModal();
@@ -508,36 +510,25 @@ document.getElementById('nextlevel-button').addEventListener('click', () => {
 document.getElementById('pause-button').addEventListener('click', () => {
   pause();
 });
+
 let timeCountdown = true;
+
 function pause() {
-  if (timeCountdown === true) {
+  if (timeCountdown) {
     clearInterval(timeCountDown);
     timeCountdown = false;
   } else {
-    timeCount();
+    timeCount(timeSecond);
     timeCountdown = true;
   }
 }
-// function playGameSound() {
-//   const audio = new Audio('../sound/gamesound.mp3');
-//   let sound = false;
-//   if (sound) {
-//     audio.play();
-//     sound = true;
-//   } else {
-//     audio.pause();
-//     sound = false;
-//   }
-// }
-// document.getElementById('music-button').addEventListener('click', () => {
-//   playGameSound();
-// });
 
 //function to play or stop the sound
 const audio = document.getElementById('audio');
+const startingMusic = document.getElementById('my_audio');
 let sound = false;
 function play() {
-  if (sound === false) {
+  if (!sound) {
     audio.play();
     sound = true;
   } else {
@@ -545,11 +536,19 @@ function play() {
     sound = false;
   }
 }
+
+const body = document.querySelector('body');
+body.addEventListener('click', (event) => {
+  if (event.target.id != 'cat' && !didIClickOnCat) {
+    startingMusic.play();
+  }
+});
+
 //function for the countdown timer
 
 const timerGame = document.querySelector('h1');
-function timeCount() {
-  let timeSecond = 20;
+function timeCount(timer) {
+  timeSecond = timer;
   timerGame.innerHTML = `00:${timeSecond}`;
   timeCountDown = setInterval(() => {
     timeSecond--;
@@ -606,6 +605,8 @@ const myFirstPage = document.querySelector('.containerFirstPage');
 const myGamePage = document.querySelector('.containerGame');
 const myCat = document.querySelector('#cat');
 myCat.addEventListener('click', () => {
+  didIClickOnCat = true;
+  startingMusic.pause();
   myFirstPage.classList.toggle('hidden');
   myGamePage.classList.toggle('hidden');
 });
