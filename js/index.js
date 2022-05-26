@@ -455,8 +455,6 @@ function reDrawMap() {
   document.addEventListener('keydown', addListner, true);
 }
 function addListner(event) {
-  console.log('code', event);
-
   player.move(event.code);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
