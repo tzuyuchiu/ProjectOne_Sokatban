@@ -73,13 +73,11 @@ const isGamePieceAt = (gamePiece, newX, newY) => {
   if (gamePiece.position.x === newX && gamePiece.position.y === newY) {
     return true;
   }
-
   return false;
 };
 
 //create a player & the movements
 class Player {
-  //object literal
   constructor({ position, speed }) {
     this.position = position;
     this.speed = speed;
@@ -234,7 +232,6 @@ class Player {
 }
 
 class Boxes {
-  //object literal
   constructor({ position, speed }) {
     this.position = position;
     this.speed = speed;
@@ -337,7 +334,6 @@ class Boxes {
     // if ture, pop up windows & stop the timer
     if (win) {
       toggleModal();
-
       closeModal();
       clearInterval(timeCountDown);
       removeEventListner();
@@ -373,7 +369,7 @@ function createMap(map) {
   targets.splice(0, targets.length);
   player = null;
 
-  // loop map arrray to add boundry by numbers
+  // loop map array to add boundry by numbers
   for (let i = 0; i < 7; i++) {
     for (let j = 0; j < 7; j++) {
       if (map[i][j] === 1) {
