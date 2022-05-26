@@ -539,6 +539,7 @@ function play() {
 const body = document.querySelector('body');
 body.addEventListener('click', (event) => {
   if (event.target.id != 'cat' && !didIClickOnCat) {
+    sound = true;
     startingMusic.play();
   }
 });
@@ -604,7 +605,6 @@ const myFirstPage = document.querySelector('.containerFirstPage');
 const myGamePage = document.querySelector('.containerGame');
 const myCat = document.querySelector('#cat');
 myCat.addEventListener('click', () => {
-  sound = true;
   didIClickOnCat = true;
   startingMusic.pause();
   myFirstPage.classList.toggle('hidden');
