@@ -502,6 +502,7 @@ function goNextLevel() {
 }
 document.getElementById('nextlevel-button').addEventListener('click', () => {
   //   toggleloseModal();
+  sound = false;
   play();
   reDrawMap();
 
