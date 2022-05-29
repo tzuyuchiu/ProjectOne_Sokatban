@@ -82,7 +82,7 @@ class Player {
     this.position = position;
     this.speed = speed;
     this.monoImage = new Image();
-    this.monoImage.src = './images/cat.svg';
+    this.monoImage.src = './images/cat.png';
   }
   draw() {
     ctx.drawImage(
