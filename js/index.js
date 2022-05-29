@@ -89,8 +89,8 @@ class Player {
       this.monoImage,
       this.position.x * 70,
       this.position.y * 70,
-      this.monoImage.width,
-      this.monoImage.height
+      this.monoImage.width / 2.2,
+      this.monoImage.height / 2.2
     );
   }
 
